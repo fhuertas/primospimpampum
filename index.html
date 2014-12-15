@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="es">
+    <meta charset="UTF-8">
+    <title>Partido Torneo Primos Pim Pam Pum</title>
+    <style>
+        body {
+            background: #000000;
+            color: #ffffff;
+            font-size: 48px;
+        }
+        #count {
+            position: fixed;
+            width: 100%;
+            text-align: center;
+            top : 33%;
+            /*margin-top: -24px;*/
+            transform: translate(0, -50%);
+            /*top : 300px;*/
+        }
+    </style>
+
+</head>
+<body>
+    <div id="count"></div>
+</body>
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script>
+    var endCount = new Date("Mon Dec 27 2014 12:00:00 GMT+0100 (CET)");
+    var secondsPerMillis = 1000;
+    var minutesPerMillis = 60 * secondsPerMillis;
+    var hoursPerMillis = 60 * minutesPerMillis;
+    var daysPerMillis = 24 *hoursPerMillis
+    var refreshTime = function() {
+        var actualTime = Date.now();
+        var difference = endCount - actualTime;
+
+//        $("#count").text(actualTime +" - "+endCount.getTime() + " = "+difference)
+        var timeToNext = difference % 1000;
+        var seconds = parseInt(difference / secondsPerMillis) % 60;
+        var minutes = parseInt(difference / minutesPerMillis) % 60
+        var hours= parseInt(difference / hoursPerMillis) % 24
+        var days= parseInt(difference / daysPerMillis) % 24
+//        $("#count").text(actualTime +" - "+endCount.getTime() + " = "+difference +", next = " +timeToNext +" || "+days+" Days, "+hours+" Hours, "+minutes+" Minutes, "+seconds+" Seconds")
+//        $("#count").clear()
+        $("#count").html("Primos Pim Pam Pum, the match is here:<br\>"+days+" Days, "+hours+" Hours, "+minutes+" Minutes, "+seconds+" Seconds")
+        setTimeout(refreshTime,timeToNext)
+
+   }
+    refreshTime()
+
+</script>
+</html>
